@@ -63,6 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "ssl": true,
             "browserTarget": "paymentsense-coding-challenge-website:build"
           },
           "configurations": {
