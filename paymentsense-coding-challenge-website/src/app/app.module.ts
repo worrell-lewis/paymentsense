@@ -8,6 +8,7 @@ import { PaymentsenseCodingChallengeApiService } from './services';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CountryTableComponent } from './country-table/country-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CountryTableComponent } from './country-table/country-table.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AgGridModule.withComponents([])
   ],
   providers: [PaymentsenseCodingChallengeApiService],
   bootstrap: [AppComponent]
