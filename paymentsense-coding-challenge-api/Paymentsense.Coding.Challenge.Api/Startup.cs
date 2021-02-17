@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Paymentsense.Coding.Challenge.Api.Configuration;
+using Paymentsense.Coding.Challenge.Api.Http;
+using Paymentsense.Coding.Challenge.Api.Http.Interfaces;
 
 namespace Paymentsense.Coding.Challenge.Api
 {
@@ -18,6 +21,9 @@ namespace Paymentsense.Coding.Challenge.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<Config>(Configuration.GetSection("AppSettings"));
+            ConfigureAppSettings(services);
+            services.AddHttpClient<ICountryClient, CountryClient>();
             services.AddControllers();
             services.AddHealthChecks();
             services.AddCors(options =>
@@ -51,6 +57,14 @@ namespace Paymentsense.Coding.Challenge.Api
             {
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/health");
+            });
+        }
+
+        private void ConfigureAppSettings(IServiceCollection services)
+        {
+            services.Configure<Config>(config =>
+            {
+                config.CountryApi = Configuration.GetValue<string>("COUNTRY_API");
             });
         }
     }

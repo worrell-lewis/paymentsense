@@ -6,6 +6,13 @@
   </h1>
   <h2>... Paymentsense Coding Challenge API is <fa-icon [icon]=paymentsenseCodingChallengeApiActiveIcon
                                                         [styles]="{ 'stroke': paymentsenseCodingChallengeApiActiveIconColour, 'color': paymentsenseCodingChallengeApiActiveIconColour }"></fa-icon> ...</h2>
+
+  
+   <a [routerLink]="['/country-table']" [hidden]="isShowCountryDataVisible" (click)="toggleCountryTable()" class="glyphicon glyphicon-check">Show Country Table</a>
+   
+  <a [routerLink]="['']" [hidden]="!isShowCountryDataVisible" (click)="toggleCountryTable()" class="glyphicon glyphicon-check">Hide Country Table</a>
 </div>
 
-<router-outlet></router-outlet>
+<div style="text-align:center;">
+  <router-outlet></router-outlet>
+</div>

@@ -15,6 +15,7 @@ export class AppComponent {
   public paymentsenseCodingChallengeApiIsActive = false;
   public paymentsenseCodingChallengeApiActiveIcon = this.faThumbsDown;
   public paymentsenseCodingChallengeApiActiveIconColour = 'red';
+  isShowCountryDataVisible: boolean = false;
 
   constructor(private paymentsenseCodingChallengeApiService: PaymentsenseCodingChallengeApiService) {
     paymentsenseCodingChallengeApiService.getHealth().pipe(take(1))
@@ -33,5 +34,10 @@ export class AppComponent {
         this.paymentsenseCodingChallengeApiActiveIcon = this.faThumbsDown;
         this.paymentsenseCodingChallengeApiActiveIconColour = 'red';
       });
+  }
+
+  toggleCountryTable()
+  {
+    this.isShowCountryDataVisible = !this.isShowCountryDataVisible;
   }
 }
