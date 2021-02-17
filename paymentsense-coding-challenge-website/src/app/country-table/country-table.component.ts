@@ -4,8 +4,7 @@ import { PaymentsenseCodingChallengeApiService } from '../services';
 
 @Component({
   selector: 'app-country-table',
-  templateUrl: './country-table.component.html',
-  styleUrls: ['./country-table.component.scss']
+  templateUrl: './country-table.component.html'
 })
 export class CountryTableComponent implements OnInit {
   allCountryData: CountryData[];

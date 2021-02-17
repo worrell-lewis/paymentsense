@@ -26,6 +26,7 @@ namespace Paymentsense.Coding.Challenge.Api.Controllers
 
 
         [HttpGet("AllCountryData")]
+        [ResponseCache(Duration =120, Location=ResponseCacheLocation.Any)]
         public async Task<IActionResult> GetAllCountryData()
         {
             List<CountryData> allCountryData = null;
