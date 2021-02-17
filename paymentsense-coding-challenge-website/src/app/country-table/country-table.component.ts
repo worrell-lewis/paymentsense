@@ -18,12 +18,12 @@ export class CountryTableComponent implements OnInit {
     
   }
 
-  ngOnInit() {
-    this.getData();    
+  ngOnInit() {   
   }  
 
   getData(){
-     this.countryApiService.getCountryData().subscribe(result => this.allCountryData = result);     
+     this.countryApiService.getCountryData().subscribe(result => {this.allCountryData = result;
+                                                                  this.gridApi.setRowData(this.allCountryData)});     
   }
 
   updateGrid()
@@ -43,9 +43,29 @@ export class CountryTableComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
-    this.gridApi.setRowData(this.allCountryData);
+    this.getData();
     this.updateGrid();
     this.rowSelection = 'single';
   }
 
+  onRowSelected(params) {
+    // AG grid calls the onRowSelected twice once when for the current selection and a second time for the unselection of the previous.
+    // Hence we proceed only if it is the selected row.
+    if (!params.node.selected)
+      return;
+
+    const selectedRow = params;
+    var laguageNames = selectedRow.data.languages.map(a => a.name);
+    var currencyNames = selectedRow.data.currencies.map(a => a.name);
+    
+    alert("Country Additional Details \n"+
+            "Name : " +selectedRow.data.name +
+            "\nCapital : "+selectedRow.data.capital+
+            "\nPopulation : "+ selectedRow.data.population.toString() +
+            "\nTime Zones : "+ selectedRow.data.timeZones.toString() +
+            "\nLanguages : " + laguageNames.toString()+
+            "\nBorders : "+selectedRow.data.borders.toString()+
+            "\nCurrencies : "+currencyNames.toString());
+    
+  }
 }

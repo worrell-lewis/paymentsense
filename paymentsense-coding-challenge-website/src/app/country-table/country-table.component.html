@@ -6,10 +6,11 @@
         class="ag-theme-alpine"
         [rowData]="rowData"
         [rowSelection]="rowSelection"
+        (rowSelected)="onRowSelected($event)"
         [columnDefs]="columnDefs"
         [masterDetail]="false"
         [animateRows]="true"
-        pagination="true"
+        pagination="true"        
         paginationPageSize=25
         (gridReady)="onGridReady($event)"></ag-grid-angular>
 </div>
